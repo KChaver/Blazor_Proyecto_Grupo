@@ -1,0 +1,33 @@
+﻿@page "/Productos"
+
+<h3>Lista de Productos</h3>
+
+@if (productosLista == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Existencia</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var products in productosLista)
+            {
+                <tr>
+                    <td>@products.Codigo</td>
+                    <td>@products.Descripcion</td>
+                    <td>@products.Precio</td>
+                    <td>@products.Existencia</td>
+                </tr> 
+            }
+        </tbody>
+    </table>
+}

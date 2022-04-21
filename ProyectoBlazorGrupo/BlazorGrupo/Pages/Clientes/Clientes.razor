@@ -1,0 +1,35 @@
+﻿@page "/Clientes"
+
+<h3>Lista de Clientes</h3>
+
+@if (clientesLista == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCliente</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in clientesLista)
+            {
+                <tr>
+                    <td>@client.IdCliente</td>
+                    <td>@client.Nombre</td>
+                    <td>@client.edad</td>
+                    <td>@client.Direccion</td>
+                    <td>@client.Telefono</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

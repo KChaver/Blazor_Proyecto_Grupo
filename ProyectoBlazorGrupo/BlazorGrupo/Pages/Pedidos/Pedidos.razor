@@ -1,0 +1,37 @@
+﻿@page "/Pedidos"
+
+<h3>Lista de Pedidos</h3>
+
+@if (pedidosLista == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdPedido</th>
+                <th>CodigoProducto</th>
+                <th>IdCliente</th>
+                <th>Unidades</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pedis in pedidosLista)
+            {
+                <tr>
+                    <td>@pedis.IdPedido</td>
+                    <td>@pedis.CodigoProducto</td>
+                    <td>@pedis.IdCliente</td>
+                    <td>@pedis.Unidades</td>
+                    <td>@pedis.Total</td>
+                    <td>@pedis.Fecha</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
