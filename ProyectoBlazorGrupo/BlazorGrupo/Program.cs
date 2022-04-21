@@ -1,6 +1,7 @@
 using BlazorGrupo.Data;
 using BlazorGrupo.Interfaces;
 using BlazorGrupo.Servicios;
+using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -18,7 +19,7 @@ builder.Services.AddScoped<IPedidosServiciocs, PedidosServicio>();
 
 MySQLConfiguration cadenaConexion = new MySQLConfiguration(builder.Configuration.GetConnectionString("MySQL"));
 builder.Services.AddSingleton(cadenaConexion);
-
+builder.Services.AddSweetAlert2();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

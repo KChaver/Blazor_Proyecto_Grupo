@@ -19,14 +19,45 @@ public class ProductoRepositorio : IProductoRepositorio
         return new MySqlConnection(CadenaConexion);
     }
 
-    public Task<bool> Actualizar(Producto producto)
+    public async Task<bool> Actualizar(Producto producto)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "UPDATE producto SET Codigo = @Codigo, Descripcion= @Descripcion,  Precio = @Precio, Existencia = @Existencia WHERE Codigo= @Codigo;"; 
+
+
+            resultado = await conexion.ExecuteAsync(sql, new {producto.Codigo,producto.Descripcion,
+                                                               producto.Precio,producto.Existencia});
+            return  resultado > 0;
+        }
+        catch (Exception ex)
+        {
+
+         return false;
+        }
+       
     }
 
-    public Task<bool> Eliminar(Producto producto)
+    public async Task<bool> Eliminar(Producto producto)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = " DELETE FROM producto WHERE Codigo= @Codigo;";
+            resultado = await conexion.ExecuteAsync(sql, new { producto.Codigo});
+            return resultado > 0;
+        }
+        catch (Exception)
+        {
+
+            return false;
+        }
+
     }
 
     public async Task<IEnumerable<Producto>> GetLista()
@@ -48,13 +79,38 @@ public class ProductoRepositorio : IProductoRepositorio
 
     }
 
-    public Task<Producto> GetPorCodigo(string codigo)
+    public async Task<Producto> GetPorCodigo(string codigo)
     {
-        throw new NotImplementedException();
+        Producto products = new Producto();
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "SELECT * FROM producto WHERE Codigo= @Codigo;";
+            products = await conexion.QueryFirstAsync<Producto>(sql, new {codigo});
+
+        }
+        catch (Exception)
+        {
+         }
+        return products;
     }
 
-    public Task<bool> Nuevo(Producto producto)
+    public async Task<bool> Nuevo(Producto producto)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "INSERT INTO producto (Codigo,Descripcion,Precio, Existencia) VALUES(@Codigo,@Descripcion,@Precio,@Existencia) ";
+            resultado = await conexion.ExecuteAsync(sql,producto);
+            return resultado > 0;
+        }
+        catch (Exception)
+        {
+
+            return false;
+        }
     }
 }

@@ -18,14 +18,14 @@ public class ProductoServicio : IProductoServicio
         productoRepositorio = new ProductoRepositorio(configuration.CadenaConexion);
     }
 
-    public Task<bool> Actualizar(Producto producto)
+    public async Task<bool> Actualizar(Producto producto)
     {
-        throw new NotImplementedException();
+       return await productoRepositorio.Actualizar(producto);
     }
 
-    public Task<bool> Eliminar(Producto producto)
+    public async Task<bool> Eliminar(Producto producto)
     {
-        throw new NotImplementedException();
+        return await productoRepositorio.Eliminar(producto);
     }
 
     public async Task<IEnumerable<Producto>> GetLista()
@@ -33,13 +33,13 @@ public class ProductoServicio : IProductoServicio
         return await productoRepositorio.GetLista();
     }
 
-    public Task<Producto> GetPorCodigo(string codigo)
+    public async Task<Producto> GetPorCodigo(string codigo)
     {
-        throw new NotImplementedException();
+       return await productoRepositorio.GetPorCodigo(codigo);
     }
 
-    public Task<bool> Nuevo(Producto producto)
+    public async Task<bool> Nuevo(Producto producto)
     {
-        throw new NotImplementedException();
+        return await productoRepositorio.Nuevo(producto);
     }
 }
