@@ -28,6 +28,9 @@ else
                     <td>@client.edad</td>
                     <td>@client.Direccion</td>
                     <td>@client.Telefono</td>
+                    <td>
+                        <a class="btn btn-success" href="@($"/Clientes/Editar/{client.IdCliente}")">Editar</a>
+                    </td>
                 </tr>
             }
         </tbody>
