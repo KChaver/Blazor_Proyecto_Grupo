@@ -54,8 +54,21 @@ public class PedidosRepositorio : IPedidosRepositorio
         throw new NotImplementedException();
     }
 
-    public Task<bool> Nuevo(Pedido pedidos)
+    public async Task<bool> Nuevo(Pedido pedidos)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "INSERT INTO pedidos (IdPedido,CodigoProducto,IdCliente,Unidades,Total,Fecha) VALUES(@IdPedido,@CodigoProducto,@IdCliente,@Unidades,@Total,@Fecha) "; //aqui cambiar a @fecha
+            resultado = await conexion.ExecuteAsync(sql, pedidos);
+            return resultado > 0;
+        }
+        catch (Exception)
+        {
+
+            return false;
+        }
     }
 }

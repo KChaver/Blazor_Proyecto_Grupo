@@ -1,0 +1,86 @@
+﻿@page "/Pedidos/Nuevo"
+
+
+<EditForm Model= "@pedi">
+    <DataAnnotationsValidator />
+    <h3>Factura</h3>
+    <br />
+
+
+
+    <div class="form-group row">
+        <label for="IdPedido" class="col-sm-2 col-form-label">
+            IdPedido
+        </label>
+        <div class="col-sm-10">  
+
+            <InputNumber id="IdPedido" class="form-control" placeholder="IdPedido"@bind-Value="pedi.IdPedido" />
+            <ValidationMessage For="@(()=>pedi.IdPedido)"/>
+      </div>
+    </div>
+
+ <div class="form-group row">
+        <label for="CodigoProducto" class="col-sm-2 col-form-label">
+            CodigoProducto
+        </label>
+        <div class="col-sm-10">  
+
+            <InputText id="CodigoProducto" class="form-control" placeholder="CodigoProducto"@bind-Value="pedi.CodigoProducto" />
+            <ValidationMessage For="@(()=>pedi.CodigoProducto)"/>
+      </div>
+    </div>
+
+    
+ <div class="form-group row">
+        <label for="IdCliente" class="col-sm-2 col-form-label">
+            IdCliente
+        </label>
+        <div class="col-sm-10">  
+
+            <InputText id="IdCliente" class="form-control" placeholder= "IdCliente" @bind-Value ="pedi.IdCliente" />
+            <ValidationMessage For="@(()=>pedi.IdCliente)"/>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Unidades" class="col-sm-2 col-form-label">
+            Unidades
+        </label>
+        <div class="col-sm-10">  
+
+            <InputNumber id="Unidades" class="form-control" placeholder="Unidades"@bind-Value="pedi.Unidades" />
+            <ValidationMessage For="@(()=>pedi.Unidades)"/>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Total" class="col-sm-2 col-form-label">
+            Total
+        </label>
+        <div class="col-sm-10">  
+
+            <InputNumber id="Total" class="form-control" placeholder="Total"@bind-Value="pedi.Total" />
+            <ValidationMessage For="@(()=>pedi.Total)"/>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Fecha" class="col-sm-2 col-form-label">
+            Fecha
+        </label>
+        <div class="col-sm-10">  
+
+            <InputDate id="Fecha" class="form-control" placeholder="Fecha"@bind-Value="pedi.Fecha" />
+            <ValidationMessage For="@(()=>pedi.Fecha)"/>
+      </div>
+    </div>
+
+    <div class= "form-group row">
+        <p>
+            <input type="submit" class="btn-toolbar btn-primary" value="Guardar" @onclick= "Guardar"/>
+             <input type="submit" class="btn-toolbar btn-danger" value="Cancelar" @onclick= "Cancelar"/>
+        </p>
+
+    </div>
+    
+</EditForm>

@@ -36,11 +36,11 @@ public class PedidosServicio : IPedidosServiciocs
 
     public Task<Pedido> GetPorCodigo(int idpedido)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); //aqui
     }
 
-    public Task<bool> Nuevo(Pedido pedidos)
+    public async Task<bool> Nuevo(Pedido pedidos)
     {
-        throw new NotImplementedException();
+        return await pedidosRepositorio.Nuevo(pedidos);
     }
 }

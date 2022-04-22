@@ -27,7 +27,7 @@ namespace BlazorGrupo.Pages.Productos
             }
             else
             {
-                await Swal.FireAsync("Error", "Usuario no se pudo crear", SweetAlertIcon.Error);
+                await Swal.FireAsync("Error", "Producto no se pudo crear", SweetAlertIcon.Error);
 
             }
             navigationManager.NavigateTo("/Productos");
