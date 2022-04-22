@@ -20,6 +20,10 @@ builder.Services.AddScoped<IPedidosServiciocs, PedidosServicio>();
 MySQLConfiguration cadenaConexion = new MySQLConfiguration(builder.Configuration.GetConnectionString("MySQL"));
 builder.Services.AddSingleton(cadenaConexion);
 builder.Services.AddSweetAlert2();
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

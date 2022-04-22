@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< Updated upstream
+=======
+    <Content Remove="Pages\Clientes\NuevoCliente.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+>>>>>>> Stashed changes
     <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.2.1" />
   </ItemGroup>
 
@@ -15,6 +22,20 @@
     <ProjectReference Include="..\Modelos\Modelos.csproj" />
   </ItemGroup>
 
+<<<<<<< Updated upstream
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+=======
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Clientes\NuevoCliente.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Clientes\NuevoCliente.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Clientes\NuevoCliente.razor" />
+  </ItemGroup>
+>>>>>>> Stashed changes
 
 </Project>

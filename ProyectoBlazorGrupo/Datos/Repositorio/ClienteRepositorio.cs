@@ -20,14 +20,45 @@ public class ClienteRepositorio : IClienteRepositorio
         return new MySqlConnection(CadenaConexion);
     }
 
-    public Task<bool> Actualizar(Cliente cliente)
+    public async Task<bool> Actualizar(Cliente cliente)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "UPDATE cliente SET IdCliente = @IdCliente, Nombre = @Nombre,  edad = @edad, Direccion = @Direccion, Telefono = @Telefono WHERE IdCliente = @IdCliente ;";
+            resultado = await conexion.ExecuteAsync(sql, new
+            {
+                cliente.IdCliente,
+                cliente.Nombre,
+                cliente.edad,
+                cliente.Direccion,
+                cliente.Telefono
+            });
+            return resultado > 0;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 
-    public Task<bool> Eliminar(Cliente cliente)
+    public async Task<bool> Eliminar(Cliente cliente)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "DELETE FROM cliente WHERE IdCliente = @IdCliente ;";
+            resultado = await conexion.ExecuteAsync(sql, new { cliente.IdCliente});
+            return resultado > 0;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 
     public async Task<IEnumerable<Cliente>> GetLista()
@@ -47,13 +78,36 @@ public class ClienteRepositorio : IClienteRepositorio
         return lista;
     }
 
-    public Task<Cliente> GetPorCodigo(string idcliente)
+    public async Task<Cliente> GetPorCodigo(string idcliente)
     {
-        throw new NotImplementedException();
+        Cliente client = new Cliente();
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "SELECT * FROM cliente WHERE IdCliente = @IdCliente;";
+            client = await conexion.QueryFirstAsync<Cliente>(sql, new { idcliente });
+        }
+        catch (Exception)
+        {
+        }
+        return client;
     }
 
-    public Task<bool> Nuevo(Cliente cliente)
+    public async Task<bool> Nuevo(Cliente cliente)
     {
-        throw new NotImplementedException();
+        int resultado;
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "INSERT INTO cliente (IdCliente, Nombre,  edad, Direccion, Telefono) VALUES (@IdCliente, @Nombre,  @edad, @Direccion, @Telefono)";
+            resultado = await conexion.ExecuteAsync(sql, cliente);
+            return resultado > 0;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 }

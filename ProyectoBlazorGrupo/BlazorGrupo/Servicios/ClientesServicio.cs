@@ -18,14 +18,14 @@ public class ClientesServicio : IClientesServicio
     }
 
 
-    public Task<bool> Actualizar(Cliente cliente)
+    public async Task<bool> Actualizar(Cliente cliente)
     {
-        throw new NotImplementedException();
+        return await clienteRepositorio.Actualizar(cliente);
     }
 
-    public Task<bool> Eliminar(Cliente cliente)
+    public async Task<bool> Eliminar(Cliente cliente)
     {
-        throw new NotImplementedException();
+        return await clienteRepositorio.Eliminar(cliente);
     }
 
     public async Task<IEnumerable<Cliente>> GetLista()
@@ -33,13 +33,13 @@ public class ClientesServicio : IClientesServicio
         return await clienteRepositorio.GetLista();
     }
 
-    public Task<Cliente> GetPorCodigo(string idcliente)
+    public async Task<Cliente> GetPorCodigo(string idcliente)
     {
-        throw new NotImplementedException();
+        return await clienteRepositorio.GetPorCodigo(idcliente);
     }
 
-    public Task<bool> Nuevo(Cliente cliente)
+    public async Task<bool> Nuevo(Cliente cliente)
     {
-        throw new NotImplementedException();
+        return await clienteRepositorio.Nuevo(cliente);
     }
 }
