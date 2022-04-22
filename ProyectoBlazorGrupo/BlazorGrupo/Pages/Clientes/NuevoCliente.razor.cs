@@ -3,7 +3,7 @@ using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using Modelos;
 
-//que funcioneeeeeeeeeee
+
 
 namespace BlazorGrupo.Pages.Clientes;
 
