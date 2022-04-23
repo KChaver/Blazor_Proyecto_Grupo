@@ -12,7 +12,7 @@ namespace Datos.Repositorio;
 
 public class UsuarioRepositorio : IUsuarioRepositorio
 {
-    private string CadenaConexion;
+    public string CadenaConexion;
 
     public UsuarioRepositorio(string cadenaConexion)
     {
@@ -65,4 +65,24 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     {
         throw new NotImplementedException();
     }
+
+    public async Task<bool> ValidaUsuario(Login login)
+    {
+        bool valido = false;
+
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "SELECT 1 FROM usuario WHERE Codigo = @Codigo AND Clave= @Clave;";
+            valido = await conexion.ExecuteScalarAsync<bool>(sql, new { login.Codigo, login.Clave });
+
+        }
+        catch (Exception ex)
+        {
+        }
+        return valido;
+    }
+
+
 }
