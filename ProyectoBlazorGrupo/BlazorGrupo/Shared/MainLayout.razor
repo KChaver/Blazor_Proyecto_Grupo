@@ -8,21 +8,21 @@
     </div>
 
     <main>
-        <div class="top=row px=4">
-        <AuthorizeView>
-            <Authorized>
-                <span class="ml-md-auto">
-                    Usuario Conectado: @context.User.Claims.First().Value
-                    <a href="/account/logout ">Salir</a>
-                </span>
+        <div class="top-row px-4">
+            <AuthorizeView>
+                <Authorized>
 
-            </Authorized>
+                    <span class="ml-md-auto">
+                        Usuario Conectado: @context.User.Claims.First().Value
+                        <a href="/account/logout">Salir</a>
+                    </span>
 
-            <NotAuthorized>
-                 <a href="/account/login" class="ml-md-auto" >LOGIN</a>
-            </NotAuthorized>
+                </Authorized>
 
-        </AuthorizeView>
+                <NotAuthorized>
+                    <a href="Login" class="ml-md-auto">Iniciar Sesión</a>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
 
         <article class="content px-4">
