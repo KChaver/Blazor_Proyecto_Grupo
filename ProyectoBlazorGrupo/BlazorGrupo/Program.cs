@@ -3,8 +3,6 @@ using BlazorGrupo.Interfaces;
 using BlazorGrupo.Servicios;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +11,13 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+MySQLConfiguration cadenaConexion = new MySQLConfiguration(builder.Configuration.GetConnectionString("MySQL"));
+builder.Services.AddSingleton(cadenaConexion);
+
 builder.Services.AddScoped<IUsuarioServicio, UsuarioServicio>();
 builder.Services.AddScoped<IProductoServicio, ProductoServicio>();
 builder.Services.AddScoped<IClientesServicio, ClientesServicio>();
 builder.Services.AddScoped<IPedidosServiciocs, PedidosServicio>();
-
-MySQLConfiguration cadenaConexion = new MySQLConfiguration(builder.Configuration.GetConnectionString("MySQL"));
-builder.Services.AddSingleton(cadenaConexion);
 builder.Services.AddSweetAlert2();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -45,6 +43,7 @@ app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapControllers();
+
 app.MapFallbackToPage("/_Host");
 
 app.Run();

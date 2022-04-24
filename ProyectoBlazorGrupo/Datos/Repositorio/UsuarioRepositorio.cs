@@ -56,9 +56,20 @@ public class UsuarioRepositorio : IUsuarioRepositorio
 
     }
 
-    public Task<Usuario> GetPorCodigo(string codigo)
+    public async Task<Usuario> GetPorCodigo(string codigo)
     {
-        throw new NotImplementedException();
+        Usuario user = new Usuario();
+        try
+        {
+            using MySqlConnection conexion = Conexion();
+            await conexion.OpenAsync();
+            string sql = "SELECT * FROM usuario WHERE Codigo = @Codigo;";
+            user = await conexion.QueryFirstAsync<Usuario>(sql, new { codigo });
+        }
+        catch (Exception)
+        {
+        }
+        return user;
     }
 
     public Task<bool> Nuevo(Usuario usuario)
@@ -69,14 +80,12 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     public async Task<bool> ValidaUsuario(Login login)
     {
         bool valido = false;
-
         try
         {
             using MySqlConnection conexion = Conexion();
             await conexion.OpenAsync();
-            string sql = "SELECT 1 FROM usuario WHERE Codigo = @Codigo AND Clave= @Clave;";
+            string sql = "SELECT 1 FROM usuario WHERE Codigo = @Codigo AND Clave = @Clave;";
             valido = await conexion.ExecuteScalarAsync<bool>(sql, new { login.Codigo, login.Clave });
-
         }
         catch (Exception ex)
         {

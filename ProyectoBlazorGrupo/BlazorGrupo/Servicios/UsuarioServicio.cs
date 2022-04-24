@@ -34,9 +34,9 @@ public class UsuarioServicio : IUsuarioServicio
         return await usuarioRepositorio.GetLista();
     }
 
-    public Task<Usuario> GetPorCodigo(string codigo)
+    public async Task<Usuario> GetPorCodigo(string codigo)
     {
-        throw new NotImplementedException();
+        return await usuarioRepositorio.GetPorCodigo(codigo);
     }
 
     public Task<bool> Nuevo(Usuario usuario)
