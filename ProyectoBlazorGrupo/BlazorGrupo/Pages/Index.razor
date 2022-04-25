@@ -1,19 +1,48 @@
 ﻿@page "/"
 
+<style>
+    body {
+        background-color: slategray;
+    }
+</style>
+
+@code {
+}
+
 <AuthorizeView Roles="Administrador">
     <Authorized Context="AuthenticationState">
         <h1>Bienvenido Administrador</h1>
+        <h1>Estos son los administradores:</h1>
+        <h2>JeydyMaradiaga</h2>
+        <h2>EdgarCruz</h2>
+        <h2>KevinChaver</h2>
+        <h2>MiguelCárdenas</h2>
+        <h2>RenéMartínez</h2>
+        <h1></h1>
+ 
     </Authorized>
 </AuthorizeView>
 
 <AuthorizeView Roles="Usuario">
     <Authorized Context="AuthenticationState">
         <h1>Bienvenido Usuario</h1>
+        <h2>Estos son los usuarios:</h2>
+        <h2>YanelyMunguia</h2>
+        <h2>EduardoZerón</h2>
+        <h2>SamuelMaldonado</h2>
+        <h2>AlejandroAmaya</h2>
+        <h2>AntonioPalma </h2>
     </Authorized>
 </AuthorizeView>
 
 <AuthorizeView>
     <NotAuthorized>
         <h2>Debe identificarse para poder acceder a la aplicación</h2>
+        <h2>.</h2>
+        <h2>Esta es una pagina web dedicada a la venta de bloques de concreto.</h2>
+        <h2>La pagina fue creada por los administradores de la misma utilizando Blazor.</h2>
+        <h2>Para iniciar sesión en la pagina deberá introducir su nombre de usuario</h2>
+        <h2>y su respectiva contraseña. Al momento de iniciar sesión se le indicara su</h2>
+        <h2>rol, si el usuario ingresado es un usuario comun o un usuario administrador.</h2>
     </NotAuthorized> 
 </AuthorizeView>
